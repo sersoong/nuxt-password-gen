@@ -1,5 +1,5 @@
 <template>
-<generator/>
+  <generator/>
 </template>
 
 <script>
