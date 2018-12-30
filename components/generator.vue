@@ -91,28 +91,34 @@
         this.hint = ''
       },
       gen: function() {
-        var code = ''
-        var genpwd = ''
+        var code = new Array()
+        var pwd = new Array()
         if(this.useUpper){
-          code+=upper
+          code.push(upper)
+          // code+=upper
         }
         if(this.useLower){
-          code+=lower
+          code.push(lower)
+          // code+=lower
         }
         if(this.useNum){
-          code+=num
+          code.push(num)
+          // code+=num
         }
         if(this.useSpec){
-          code+=spec
+          code.push(spec)
+          // code+=spec
         }
-        if(code.length>1){
+        
+        var truecode = code.join("")
+        if(truecode.length>1){
           for(var i=0;i<this.length;i++){
-            var pos = Math.round(Math.random()*code.length)
-            genpwd += code[pos]
+            var pos = Math.round(Math.random()*truecode.length)
+            pwd.push(truecode[pos])
           }
         }
         this.hint = ''
-        this.result = genpwd
+        this.result = pwd.join("")
       }
     }
   }
