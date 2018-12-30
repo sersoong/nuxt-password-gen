@@ -56,7 +56,7 @@ module.exports = {
     }
   },
   router: {
-    base: "/nuxt-password-gen/"
+    base: "/"
   }
   // generate: {
   //   dir: "docs"
