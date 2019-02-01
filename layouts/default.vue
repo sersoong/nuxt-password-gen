@@ -30,6 +30,11 @@
 
 <script>
   export default {
-   name:"default"
+   name:"default",
+   data(){
+     return {
+       fixed:false
+     }
+   }
   }
 </script>

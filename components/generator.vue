@@ -46,19 +46,18 @@
             label="密码生成"
             clearable
             counter
-            append-icon='file_copy'
-            @click:append="copy"
-            @click:clear="clear"
+            id="passwdresult"
             :hint = 'hint'
-            :value = 'result'
+            v-model = 'result'
+            @click:clear="clear"
             persistent-hint
-          ></v-text-field>
+          >
+          <v-icon slot='append' id="btncopy" data-clipboard-action="copy" data-clipboard-target="#passwdresult" flat icon @click='copy'>far fa-copy</v-icon>
+          </v-text-field>
       </v-flex>
       <v-flex xs2>
         <v-btn @click="gen">生成</v-btn>
       </v-flex>
-        
-      
     </v-layout>
   </v-container>
 </template>
@@ -68,6 +67,7 @@
   var upper = 'ABCDEFGHIJKLMNPQRSTUVWXYZ'
   var num = '0123456789'
   var spec = '!@#%&^*-_+=()"{}[]<>'
+
   export default {
     data () {
       return {
@@ -77,15 +77,26 @@
         useNum: true,
         useSpec: true,
         result: '',
-        hint: ''
+        hint: '',
+        copyProc: null
       }
+    },
+    mounted () {
+      this.copyProc = new this.$clipboard('#btncopy')
     },
     methods:{
       /* eslint no-console: 0*/
       copy: function() {
-        if(this.result.length>0){
-          this.hint = '已经复制到剪贴板！'
-        }
+        var _this = this
+        //成功回调
+          this.copyProc.on('success', function(e) {
+              _this.hint = '成功复制到剪贴板'
+              e.clearSelection();
+          });
+          //失败回调
+          this.copyProc.on('error', function(e) {
+              _this.hint='操作失败！'
+          });
       },
       clear: function() {
         this.hint = ''
