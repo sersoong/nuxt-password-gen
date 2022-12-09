@@ -14,7 +14,7 @@
   "dependencies": {
     "clipboard": "^2.0.4",
     "cross-env": "^5.2.0",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "nuxt": "^2.0.0",
     "vuetify": "^1.2.4"
   },
